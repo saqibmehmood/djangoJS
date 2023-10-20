@@ -29,49 +29,6 @@ services:
     volumes:
       - /home/tk-lpt-395/PycharmProjects/djangoJS/Blog/Blog/media:/app/media
 
-  web2:
-    build:
-      context: .
-    networks:
-      - myapp_network
-    ports:
-      - "8002:8000" # Map Django port to host
-    environment:
-      - APP_INSTANCE=web2
-    depends_on:
-      - db # Ensure the database is ready before starting the Django app
-    volumes:
-      - /home/tk-lpt-395/PycharmProjects/djangoJS/Blog/Blog/media:/app/media
-
-  web3:
-    build:
-      context: .
-    networks:
-      - myapp_network
-    ports:
-      - "8003:8000" # Map Django port to host
-    environment:
-      - APP_INSTANCE=web3
-    depends_on:
-      - db # Ensure the database is ready before starting the Django app
-    volumes:
-      - /home/tk-lpt-395/PycharmProjects/djangoJS/Blog/Blog/media:/app/media
-
-  web4:
-    build:
-      context: .
-    networks:
-      - myapp_network
-    ports:
-      - "8004:8000" # Map Django port to host
-    environment:
-      - APP_INSTANCE=web4
-    depends_on:
-      - db # Ensure the database is ready before starting the Django app
-    volumes:
-      - /home/tk-lpt-395/PycharmProjects/djangoJS/Blog/Blog/media:/app/media
-
-
   nginx:
     image: nginx:latest
     networks:
@@ -83,9 +40,6 @@ services:
       - /home/tk-lpt-395/certs:/etc/nginx/certs
     depends_on:
       - web1
-      - web2
-      - web3
-      - web4
 
 networks:
   myapp_network:

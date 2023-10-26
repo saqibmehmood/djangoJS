@@ -98,8 +98,8 @@ DATABASES = {
         'NAME': 'djangoJs',  # Change to your database name
         'USER': 'postgres',  # Change to your database user
         'PASSWORD': 'postgres123',  # Change to your database password
-        'HOST': 'db',  # This is the Docker network hostname for the database container
-        # 'HOST': 'localhost',  # This is the Docker network hostname for the database container
+        # 'HOST': 'db',  # This is the Docker network hostname for the database container
+        'HOST': 'localhost',  # This is the Docker network hostname for the database container
         # 'HOST': 'web.docker.internal',  # This is the Docker network hostname for the database container
         # 'PORT': '5433',  # Default PostgreSQL port
         'PORT': '5432',  # Default PostgreSQL port

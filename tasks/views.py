@@ -46,6 +46,15 @@ class Testing2(APIView):
         generate_csv(request)
         return Response({"message": message}, status=status.HTTP_201_CREATED)
 
+class Testing3(APIView):
+    def get(self, request):
+        try:
+            return Response({"message": "Everything is working fine"}, status=status.HTTP_201_CREATED)
+        except Exception as e:
+            return Response({"message": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+
+
+
 
 from django.http import HttpResponse
 import csv
@@ -88,14 +97,17 @@ class TaskList(APIView):
             raise status.HTTP_404_NOT_FOUND
 
     def get(self, request, format=None):
-        tasks = Task.objects.all()
+        try:
+            tasks = Task.objects.all()
 
-        # Use the pagination_class for pagination
-        paginator = self.pagination_class()
-        paginated_tasks = paginator.paginate_queryset(tasks, request, view=self)
+            # Use the pagination_class for pagination
+            paginator = self.pagination_class()
+            paginated_tasks = paginator.paginate_queryset(tasks, request, view=self)
 
-        serializer = TaskSerializer(paginated_tasks, many=True)
-        return paginator.get_paginated_response(serializer.data)
+            serializer = TaskSerializer(paginated_tasks, many=True)
+            return paginator.get_paginated_response(serializer.data)
+        except Exception as e:
+            return Response({"message": str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
 
     def post(self, request, format=None):

@@ -49,7 +49,7 @@ class Testing2(APIView):
 class Testing3(APIView):
     def get(self, request):
         try:
-            return Response({"message": "Everything is working fine"}, status=status.HTTP_201_CREATED)
+            return Response({"message": "Everything is working fine and i am from CI/CD, Congratulations"}, status=status.HTTP_201_CREATED)
         except Exception as e:
             return Response({"message": str(e)}, status=status.HTTP_400_BAD_REQUEST)
 

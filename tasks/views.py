@@ -98,7 +98,7 @@ class TaskList(APIView):
 
     def get(self, request, format=None):
         try:
-            tasks = Task.objects.all()
+            tasks = Task.objects.all().order_by('-title')
 
             # Use the pagination_class for pagination
             paginator = self.pagination_class()
@@ -138,8 +138,8 @@ class TaskList(APIView):
 
 
 class getTask(APIView):
-    def get(self, request, pk):
-        task = Task.objects.get(pk=pk)
+    def get(self, request, title):
+        task = Task.objects.get(title=title)
         serializer = TaskSerializer(task)
         return Response(serializer.data)
 
